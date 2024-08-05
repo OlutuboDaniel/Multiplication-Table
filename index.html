@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Table Generator</title>
+</head>
+<body>
+    <h1>Multiplication Table Generator</h1>
+    <form id="multiplication-form">
+        <label for="a">a:</label>
+        <input type="text" id="a" required>
+        <br>
+        <label for="b">b:</label>
+        <input type="text" id="b" required>
+        <br>
+        <label for="n">max n:</label>
+        <input type="text" id="n" required>
+        <br>
+        <button type="submit">Generate Table</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('multiplication-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+ 
+            const a = parseFloat(document.getElementById('a').value);
+            const b = parseFloat(document.getElementById('b').value);
+            const maxN = parseInt(document.getElementById('n').value, 10);
+
+ 
+            if (isNaN(a) || isNaN(b) || isNaN(maxN) || maxN < 1 || maxN > 50) {
+                alert('Please enter valid numbers. n must be between 1 and 50.');
+                return;
+            }
+
+    
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '';
+
+            let table = '<table border="1"><tr><th>a</th><th>b</th><th>n</th><th>a * b * n</th></tr>';
+            for (let n = 1; n <= maxN; n++) {
+                table += `<tr><td>${a}</td><td>${b}</td><td>${n}</td><td>${a * b * n}</td></tr>`;
+            }
+            table += '</table>';
+            resultDiv.innerHTML = table;
+
+   
+            alert('Table generated successfully!');
+        });
+    </script>
+</body>
+</html>
